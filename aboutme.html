@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <head>
     <h1>Lucky man</h1>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        </style>
 </head>
 <body>
    <h4> As the name suggest Lucky man has the superpower of being lucky. Even in the toughest situations lucky man somehow triumphs. He also has the knowledge 
@@ -9,6 +15,7 @@
     <br>
     <img src="luck.jpg" alt="Picture of lucky man">
     <hr>
+    <h2>Favorite food</h2>
     <table>
         <tr>
             <th>Food item</th>
@@ -35,8 +42,39 @@
             <td>Sonic</td>
             <td>$10</td>
         </tr>
+
     </table>
+  <hr>
+  <h2>Bipartite Graph Check</h2>
+  <blockquote cite="https://www.geeksforgeeks.org/bipartite-graph/">A Bipartite Graph is a graph whose vertices can be divided into two independent sets, U and V such that every edge (u, v) either connects a vertex from U to V or a vertex from V to U. In other words, for every edge (u, v), either u belongs to U and v to V, or u belongs to V and v to U. We can also say that there is no edge that connects vertices of same set.
+  </blockquote>
+  <a href="https://www.geeksforgeeks.org/bipartite-graph">For more</a>
+  <pre>int n;
+    vector<vector<int>> adj;
     
+    vector<int> side(n, -1);
+    bool is_bipartite = true;
+    queue<int> q;
+    for (int st = 0; st < n; ++st) {
+        if (side[st] == -1) {
+            q.push(st);
+            side[st] = 0;
+            while (!q.empty()) {
+                int v = q.front();
+                q.pop();
+                for (int u : adj[v]) {
+                    if (side[u] == -1) {
+                        side[u] = side[v] ^ 1;
+                        q.push(u);
+                    } else {
+                        is_bipartite &= side[u] != side[v];
+                    }
+                }
+            }
+        }
+    }
+    
+    cout << (is_bipartite ? "YES" : "NO") << endl;</pre>
 
 
 </body>
